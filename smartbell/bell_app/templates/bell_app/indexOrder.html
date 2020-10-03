@@ -47,7 +47,7 @@
                 {% for menu in menus %}
                 <form action="./deleteMenu/" method="GET">
                     <div class="input-group" name='menu1'>
-                        <li class="list-group-item"> {{menu.menu_name}} ({{menu.menu_hot_ice}}) - {{menu.menu_price}} </li>
+                        <li class="list-group-item"> {{menu.menu_name}} ({{menu.menu_hot_ice}}) </li>
                         <input type="hidden" id="menuNum" name="menuNum" value="{{menu.id}}"></input>
                     </div>
                 </form>
