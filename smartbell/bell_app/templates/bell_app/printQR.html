@@ -1,0 +1,69 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Boot strap -->
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <style>
+        .toDoDiv{
+
+        }
+        .content{
+            height: 75%;
+        }
+        .messageDiv{
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+        .custom-btn{
+            font-size: 10px;
+        }
+        .panel-footer{
+            height:10%;
+            color:gray;
+        }
+    </style>
+
+    <title>SmartBell</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="page-header">
+                <h1>QR 출력<small>주문 조회(+qr)</small></h1>
+            </div>
+        </div>
+        
+        #주문 목록
+        <div class="toDoDiv">
+            <ul class="list-group">
+                {% for order in orders %}
+                {% if order.order_ing == True %}
+                <form action="http://127.0.0.1:8000/indexOrder/printQR" method="GET">
+                    <div class="input-group" name='menu1'>
+                        <li class="list-group-item">[{{order.order_time}}] {{order.order_menu}} ({{order.order_num}})</li>
+                        <input type="hidden" id="menuNum" name="orderNum" value="{{order.id}}"></input>
+                        <span class="input-group-addon">
+                            <button type="submit" class="custom-btn btn btn-danger">printQR</button>
+                        </span>
+                    </div>
+                </form>
+                {% else %}
+                {%endif %}
+                {% endfor %}
+
+            </ul>
+        </div>
+        
+        <div class="panel-footer">
+            HF_406
+        </div>
+    </div>
+</body>
+</html>

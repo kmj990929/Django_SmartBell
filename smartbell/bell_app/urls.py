@@ -10,7 +10,14 @@ from . import views
 
 urlpatterns = [
     path('',views.index, name = 'index'),
-    path('createMenu/', views.createMenu, name = 'createMenu'),
-    path('deleteMenu/', views.deleteMenu, name = 'deleteMenu'),
-    path('inputOrder/', views.inputOrder, name = 'inputOrder'),
+    
+    path('indexMenu/',views.indexMenu, name = 'indexMenu'),
+    path('indexMenu/createMenu/', views.createMenu, name = 'createMenu'),
+    path('indexMenu/deleteMenu/', views.deleteMenu, name = 'deleteMenu'),
+    
+    path('indexOrder/', views.indexOrder, name = 'indexOrder'),
+    path('indexOrder/createOrder/', views.createOrder, name = 'createOrder'),
+    path('indexOrder/OrderList/', views.OrderList, name = 'OrderList'),
+    path('indexOrder/updateOrder/', views.updateOrder, name = 'updateOrder'),
+    path('indexOrder/printQR/', views.printQR, name = 'printQR'),
 ]

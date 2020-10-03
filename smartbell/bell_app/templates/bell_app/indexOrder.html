@@ -1,0 +1,101 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Boot strap -->
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <style>
+        .toDoDiv{
+
+        }
+        .content{
+            height: 75%;
+        }
+        .messageDiv{
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+        .custom-btn{
+            font-size: 10px;
+        }
+        .panel-footer{
+            height:10%;
+            color:gray;
+        }
+    </style>
+
+    <title>SmartBell</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="page-header">
+                <h1>주문 입력<small>메뉴 조회, 주문 저장</small></h1>
+            </div>
+        </div>
+        
+        #메뉴 목록
+        #나중에 버튼으로 바꿔야 함
+        <div class="toDoDiv">
+            <ul class="list-group">
+                {% for menu in menus %}
+                <form action="./deleteMenu/" method="GET">
+                    <div class="input-group" name='menu1'>
+                        <li class="list-group-item"> {{menu.menu_name}} ({{menu.menu_hot_ice}}) - {{menu.menu_price}} </li>
+                        <input type="hidden" id="menuNum" name="menuNum" value="{{menu.id}}"></input>
+                    </div>
+                </form>
+                {% endfor %}
+
+            </ul>
+        </div>
+            
+        #주문 입력 받는 구간
+        <div class="content">
+            <div class="messageDiv">
+                <form action="./createOrder/" method="POST">{% csrf_token %}
+                    <div class="input-group">
+                        <input id="todoContent" name="OrderTime" type="text" class="form-control" placeholder="주문 시각">
+                        <input id="todoContent" name="OrderMenu" type="text" class="form-control" placeholder="메뉴 명">
+                        <input id="todoContent" name="OrderNum" type="text" class="form-control" placeholder="주문 갯수">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">save</button>
+                        </span>
+                    </div>
+                </form>
+            </div>    
+        </div>
+        
+        #버튼
+        <div class="jump_to_order_list">
+            <form action="./OrderList" method="GET">
+                <div class="input-group" name='menu1'>
+                    <span class="input-group-addon">
+                        <button type="submit" class="custom-btn btn btn-danger">OrderList</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        
+        <div class="jump_to_print_QR">
+            <form action="./printQR" method="GET">
+                <div class="input-group" name='menu1'>
+                    <span class="input-group-addon">
+                        <button type="submit" class="custom-btn btn btn-danger">printQR</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        
+        <div class="panel-footer">
+            HF_406
+        </div>
+    </div>
+</body>
+</html>

@@ -30,48 +30,29 @@
         }
     </style>
 
-    <title>To-Do</title>
+    <title>SmartBell</title>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <div class="page-header">
-                <h1>메뉴 관리<small>메뉴 조회, 등록, 수정, 삭제</small></h1>
+                <h1>Home<small>HF_406</small></h1>
             </div>
         </div>
         <div class="content">
-            <div class="messageDiv">
-                <form action="./createMenu/" method="POST">{% csrf_token %}
-                    <div class="input-group">
-                        <input id="todoContent" name="MenuName" type="text" class="form-control" placeholder="메뉴 명">
-                        <input id="todoContent" name="MenuPrice" type="text" class="form-control" placeholder="가격">
-                        <input id="todoContent" name="MenuHotIce" type="text" class="form-control" placeholder="hot/ice (boolean)">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit">save</button>
+            
+            <div class="jump_to_index_menu">
+                <form action="./indexMenu/" method="GET">
+                    <div class="input-group" name='menu1'>
+                        <span class="input-group-addon">
+                            <button type="submit" class="custom-btn btn btn-danger">InputMenu</button>
                         </span>
                     </div>
                 </form>
             </div>
 
-            <div class="toDoDiv">
-                <ul class="list-group">
-                    {% for menu in menus %}
-                    <form action="./deleteMenu/" method="GET">
-                        <div class="input-group" name='menu1'>
-                            <li class="list-group-item">[{{menu.id}}] {{menu.menu_name}} ({{menu.menu_hot_ice}}) - {{menu.menu_price}} </li>
-                            <input type="hidden" id="menuNum" name="menuNum" value="{{menu.id}}"></input>
-                            <span class="input-group-addon">
-                                <button type="submit" class="custom-btn btn btn-danger">delete</button>
-                            </span>
-                        </div>
-                    </form>
-                    {% endfor %}
-
-                </ul>
-            </div>
-            
-            <div class="jump_to_input_order">
-                <form action="./inputOrder/" method="GET">
+            <div class="jump_to_index_order">
+                <form action="./indexOrder/" method="GET">
                     <div class="input-group" name='menu1'>
                         <span class="input-group-addon">
                             <button type="submit" class="custom-btn btn btn-danger">InputOrder</button>
@@ -80,9 +61,28 @@
                 </form>
             </div>
             
+            <div class="jump_to_order_list">
+                <form action="./indexOrder/OrderList" method="GET">
+                    <div class="input-group" name='menu1'>
+                        <span class="input-group-addon">
+                            <button type="submit" class="custom-btn btn btn-danger">OrderList</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="jump_to_print_qr">
+                <form action="./indexOrder/printQR" method="GET">
+                    <div class="input-group" name='menu1'>
+                        <span class="input-group-addon">
+                            <button type="submit" class="custom-btn btn btn-danger">printQR</button>
+                        </span>
+                    </div>
+                </form>
+            </div>                                    
         </div>
         <div class="panel-footer">
-            실전예제로 배우는 Django. Project1-TodoList
+            HF_406
         </div>
     </div>
 </body>
