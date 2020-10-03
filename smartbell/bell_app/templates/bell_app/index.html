@@ -1,0 +1,89 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Boot strap -->
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <style>
+        .content{
+            height: 75%;
+        }
+        .messageDiv{
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+        .toDoDiv{
+
+        }
+        .custom-btn{
+            font-size: 10px;
+        }
+        .panel-footer{
+            height:10%;
+            color:gray;
+        }
+    </style>
+
+    <title>To-Do</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="page-header">
+                <h1>메뉴 관리<small>메뉴 조회, 등록, 수정, 삭제</small></h1>
+            </div>
+        </div>
+        <div class="content">
+            <div class="messageDiv">
+                <form action="./createMenu/" method="POST">{% csrf_token %}
+                    <div class="input-group">
+                        <input id="todoContent" name="MenuName" type="text" class="form-control" placeholder="메뉴 명">
+                        <input id="todoContent" name="MenuPrice" type="text" class="form-control" placeholder="가격">
+                        <input id="todoContent" name="MenuHotIce" type="text" class="form-control" placeholder="hot/ice (boolean)">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">save</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+
+            <div class="toDoDiv">
+                <ul class="list-group">
+                    {% for menu in menus %}
+                    <form action="./deleteMenu/" method="GET">
+                        <div class="input-group" name='menu1'>
+                            <li class="list-group-item">[{{menu.id}}] {{menu.menu_name}} ({{menu.menu_hot_ice}}) - {{menu.menu_price}} </li>
+                            <input type="hidden" id="menuNum" name="menuNum" value="{{menu.id}}"></input>
+                            <span class="input-group-addon">
+                                <button type="submit" class="custom-btn btn btn-danger">delete</button>
+                            </span>
+                        </div>
+                    </form>
+                    {% endfor %}
+
+                </ul>
+            </div>
+            
+            <div class="jump_to_input_order">
+                <form action="./inputOrder/" method="GET">
+                    <div class="input-group" name='menu1'>
+                        <span class="input-group-addon">
+                            <button type="submit" class="custom-btn btn btn-danger">InputOrder</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+        <div class="panel-footer">
+            실전예제로 배우는 Django. Project1-TodoList
+        </div>
+    </div>
+</body>
+</html>
