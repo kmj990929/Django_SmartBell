@@ -6,6 +6,7 @@ class Order(models.Model):
     order_menu = models.CharField(max_length = 100) #주문한 메뉴 명
     order_num = models.IntegerField() # 주문한 갯수
     order_ing = models.BooleanField(default = True) # 제조중/제조완료
+    order_price = models.IntegerField(default = 0) # 총 금액
     
 class Menu(models.Model):
     menu_name = models.CharField(max_length = 100) #메뉴 이름
